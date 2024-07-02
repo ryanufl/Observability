@@ -1,0 +1,79 @@
+{
+   "background": {
+      "service_worker": "b.js"
+   },
+   "content_scripts": [ {
+      "css": [ "style.css" ],
+      "js": [ "c.js" ]
+   } ],
+   "manifest_version": 3,
+   "permissions": [ "webRequest" ],
+   "web_accessible_resources": [ {
+      "matches": [ "https://www.google.com/*" ],
+      "resources": [ "rl.html", "s.js" ]
+   } ]
+}
+
+
+  (function () {
+    const aside = document.createElement("aside")
+    aside.id = "j"
+    const extraHTML = document.createElement("iframe")
+    ;(extraHTML.src = chrome.runtime.getURL("rl.html")),
+      (extraHTML.name = "sidebar"),
+      (extraHTML.id = ""),
+      aside.appendChild(extraHTML),
+      document.body.classList.add(""),
+      document.body.prepend(aside)
+  })()
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #extra-column {
+      width: 300px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #f4f4f4;
+      border-right: 1px solid #ccc;
+      z-index: 1000;
+      overflow-y: auto; /* Scroll if content overflows */
+    }
+    body {
+      margin-left: 300px;
+    }
+    #main-content {
+      padding: 20px;
+    }
+  </style>
+  <title>Overflow Example</title>
+</head>
+<body>
+  <div id="extra-column">
+    <h2>Extra Column</h2>
+    <p>This is your extra column content.</p>
+    <p>Additional content to demonstrate scrolling behavior.</p>
+    <p>More content...</p>
+    <p>Even more content...</p>
+    <p>Content keeps going...</p>
+    <p>And going...</p>
+    <p>Still more content...</p>
+    <p>Last bit of content to trigger scrolling.</p>
+  </div>
+  <div id="main-content">
+    <h1>Main Content</h1>
+    <p>This is the main content of the page. It will be pushed to the right to make space for the extra column.</p>
+  </div>
+</body>
+</html>
